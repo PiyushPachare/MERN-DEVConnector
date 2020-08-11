@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://db-user:0NRD9xtPqx98uPNK@cluster0.9jg8t.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtToken": "jwtsecrettoken"
+}
