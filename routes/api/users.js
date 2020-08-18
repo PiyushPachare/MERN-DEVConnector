@@ -5,10 +5,13 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
+const normalize = require("normalize-url");
 
 const User = require("../../models/User");
-//@route for POST api/user
-//@desc register user
+
+// @route    POST api/users
+// @desc     Register user
+// @access   Public
 router.post(
   "/",
   //validation
@@ -38,11 +41,14 @@ router.post(
       }
 
       //get users gravator
-      const avatar = gravatar.url(email, {
-        s: "200", //status
-        r: "pg", //rating
-        d: "mm", //default image
-      });
+      const avatar = normalize(
+        gravatar.url(email, {
+          s: "200", //status
+          r: "pg", //rating
+          d: "mm", //default image
+        }),
+        { forceHttps: true }
+      );
 
       user = new User({
         name,
